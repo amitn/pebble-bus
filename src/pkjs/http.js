@@ -3,7 +3,7 @@
 // Transitous' usage policy (https://transitous.org/api/) requires a
 // User-Agent with the app name, version and a way to contact you.
 // Set CONTACT to your project URL or e-mail before publishing.
-var CONTACT = 'https://github.com/YOUR-NAME/pebble-bus';
+var CONTACT = 'https://github.com/amitn/pebble-bus';
 var USER_AGENT = 'PebbleNextBus/1.0.0 (+' + CONTACT + ')';
 
 function request(url, timeoutMs, binary, cb) {

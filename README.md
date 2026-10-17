@@ -4,6 +4,13 @@ A Pebble watchapp (platform `emery`, 200×228 color) that shows the next buses
 from where you are to destinations you choose in the phone settings, plus a
 map of the boarding stop.
 
+## Screenshots (London, from Green Park)
+
+| Where to? | Next buses | Stop map | Centered on the stop |
+| :---: | :---: | :---: | :---: |
+| ![Destination menu](docs/screenshots/london-destinations.png) | ![Departures to Oxford Circus with TfL live times](docs/screenshots/london-departures.png) | ![Map with walking path to Stop J](docs/screenshots/london-map.png) | ![Map zoomed on the stop with the 38 route](docs/screenshots/london-map-stop.png) |
+| Pick one of your saved destinations | Countdown, boarding stop with its letter, and when to leave. The green dot marks a TfL live time | Your position (blue), dotted walk to the stop, and the bus route in its line color | Select switches the center between overview, the stop and you. Up/Down zoom |
+
 - **Departures list**: line badge in the route's color, countdown to the bus,
   boarding stop, when to leave (green/orange/red by urgency) and arrival time.
   Refreshes every 2 minutes; long-press Select to refresh now.
@@ -33,7 +40,7 @@ map of the boarding stop.
 Street data is cached on the phone per stop (8 most recent, 30 days), so a
 daily commute stop downloads its tiles only once.
 
-**Before publishing**, set `CONTACT` in `src/pkjs/http.js` to your project URL
+**If you fork this**, set `CONTACT` in `src/pkjs/http.js` to your project URL
 or e-mail. Transitous' [usage policy](https://transitous.org/api/) requires a
 User-Agent with the app name, version and a contact, and asks projects
 with many users to check in with them first. The service is for
