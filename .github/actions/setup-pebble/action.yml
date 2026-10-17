@@ -12,8 +12,10 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: astral-sh/setup-uv@v6
-    - uses: actions/setup-node@v4
+    - uses: astral-sh/setup-uv@v10.3.0
+      with:
+        enable-cache: false  # only installs pebble-tool, which takes seconds
+    - uses: actions/setup-node@v7
       with:
         node-version: 22
     - name: Install pebble-tool and SDK
