@@ -1,0 +1,64 @@
+{
+  "name": "pebble-bus",
+  "author": "Amit Nishry",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Next Bus",
+    "uuid": "b018dbaf-6adf-4152-b0f1-b886c857a3c0",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": ["emery"],
+    "capabilities": ["location", "configurable"],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [
+      "Ready",
+      "DestNames",
+      "Fetch",
+      "MapRequest",
+      "Status",
+      "ResultsBegin",
+      "DestIndex",
+      "ItemIndex",
+      "Line",
+      "Stop",
+      "Headsign",
+      "DepTime",
+      "LeaveTime",
+      "ArrTime",
+      "Delay",
+      "WalkMin",
+      "WalkDist",
+      "Transfers",
+      "RealTime",
+      "Color",
+      "MapBegin",
+      "MapUserX",
+      "MapUserY",
+      "MapScale",
+      "MapData",
+      "MapEnd",
+      "MapStatus"
+    ],
+    "resources": {
+      "media": [
+        {
+          "type": "font",
+          "name": "FONT_NAME_BOLD_17",
+          "file": "fonts/LiberationSans-Bold.ttf",
+          "characterRegex": "[ -~°·À-ÿא-ת׳״–—‘’“”•…]"
+        },
+        {
+          "type": "font",
+          "name": "FONT_NAME_14",
+          "file": "fonts/LiberationSans-Regular.ttf",
+          "characterRegex": "[ -~°·À-ÿא-ת׳״–—‘’“”•…]"
+        }
+      ]
+    }
+  }
+}
