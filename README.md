@@ -1,5 +1,8 @@
 # Next Bus for Pebble Time 2
 
+[![Build](https://github.com/amitn/pebble-bus/actions/workflows/build.yml/badge.svg)](https://github.com/amitn/pebble-bus/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A Pebble watchapp (platform `emery`, 200×228 color) that shows the next buses
 from where you are to destinations you choose in the phone settings, plus a
 map of the boarding stop.
@@ -60,6 +63,39 @@ pebble install --emulator emery         # emulator
 pebble emu-app-config --emulator emery  # open the settings page for the emulator
 ```
 
+Or download the `.pbw` from the latest
+[release](https://github.com/amitn/pebble-bus/releases), or from the
+artifacts of any [CI run](https://github.com/amitn/pebble-bus/actions).
+
+## CI and releases
+
+[`.github/workflows/build.yml`](.github/workflows/build.yml) builds the app on
+every push and pull request and attaches `pebble-bus.pbw` to the run.
+
+To release, bump `version` in `package.json`, commit, then tag and push:
+
+```sh
+git tag v1.1.0 && git push origin v1.1.0
+```
+
+The tag must match `package.json` or the build fails. A tag build also:
+
+1. creates a GitHub release with `next-bus-v1.1.0.pbw` attached, and
+2. publishes to the [Pebble app store](https://apps.repebble.com) with
+   `pebble publish`, using the README screenshots. The first run creates the
+   store listing.
+
+Step 2 needs a one-time secret. Log in with the Pebble tool, then store its
+long-lived Firebase refresh token in the repo (path shown is for Linux):
+
+```sh
+pebble login
+gh secret set PEBBLE_FIREBASE_REFRESH_TOKEN --repo amitn/pebble-bus --body \
+  "$(jq -r .refresh_token ~/.local/share/pebble-sdk/oauth_firebase/firebase_oauth_storage.json)"
+```
+
+Without the secret, the store step is skipped with a warning.
+
 ## Layout
 
 ```
@@ -83,7 +119,13 @@ The phone projects map geometry to meters around the stop and sends compact
 polylines (`[kind:u8][n:u8][n × (x:i16, y:i16)]`, about 9 KB for a dense city
 block) so the watch only scales and draws.
 
-## Licenses
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+The code is under the [MIT License](LICENSE).
 
 Bundled fonts: Liberation Sans (SIL OFL 1.1), see `resources/fonts/LICENSE-Liberation.txt`.
 Map data © OpenStreetMap contributors.

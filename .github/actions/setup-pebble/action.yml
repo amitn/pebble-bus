@@ -1,0 +1,25 @@
+name: Set up Pebble SDK
+description: Installs pebble-tool and the Pebble SDK (which needs Node.js for the JS bundler).
+
+inputs:
+  tool-version:
+    description: pebble-tool version from PyPI
+    default: 5.0.40
+  sdk-version:
+    description: Pebble SDK version
+    default: 4.33.1
+
+runs:
+  using: composite
+  steps:
+    - uses: astral-sh/setup-uv@v6
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
+    - name: Install pebble-tool and SDK
+      shell: bash
+      run: |
+        # The SDK's virtualenv needs a Python with ensurepip; 3.14 builds may lack it.
+        uv tool install --python 3.13 "pebble-tool==${{ inputs.tool-version }}"
+        uv tool dir --bin >> "$GITHUB_PATH"
+        "$(uv tool dir --bin)/pebble" sdk install "${{ inputs.sdk-version }}" < /dev/null
